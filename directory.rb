@@ -15,8 +15,6 @@ students = [
 def print_header
 puts "The students of Villains Academy"
 puts "------------"
-students.each do |student|
-    puts student
 end
 
 def print(names)
@@ -31,5 +29,5 @@ end
 
 # nothing happens until we call the methods
 print_header
-print(students_)
+print(students)
 print_footer(students)
