@@ -24,30 +24,37 @@ puts "------------"
 end
 
 def print(students)
-  puts "If you want to filter by first letter, enter the letter here. Otherwise, just hit return."
+  puts "If you want to filter by length of name, enter the number of characters. Otherwise, just enter 0."
   filter = gets.chomp
-  if filter == ""
-    string = 0
+  if filter == "0"
+    length  = 0
   else
-  filter.upcase!
-  string = 1
+  filter = filter.to_i
+  length  = 1
   end
 
-  if string == 0
+  if length  == 0
     students.each_with_index do |student, index|
       indexplusone = index+1  
       puts "#{indexplusone}  #{student[:name]} (#{student[:cohort]} cohort)"
     end
-  elsif string == 1
+  elsif length  == 1
   students.each_with_index do |student, index|
       indexplusone = index+1
       slice = student[:name]
-      filter_slice = slice.slice(0)
-        if filter_slice == filter 
+      filter_slice = slice.delete(" ")
+        if filter_slice.length <= filter 
           puts "#{indexplusone}  #{student[:name]} (#{student[:cohort]} cohort)"
         end
     end
   end
+
+ 
+
+
+
+
+
 end
 
 def print_footer(names)
