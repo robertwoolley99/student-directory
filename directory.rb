@@ -48,13 +48,6 @@ def print(students)
         end
     end
   end
-
- 
-
-
-
-
-
 end
 
 def print_footer(names)
