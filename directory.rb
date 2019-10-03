@@ -9,7 +9,6 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    # add the student hash to the array
     students << {name: name, cohort: :november}
     puts "Now we have #{students.count} students"
     # get another name from the user
@@ -25,8 +24,29 @@ puts "------------"
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  puts "If you want to filter by first letter, enter the letter here. Otherwise, just hit return."
+  filter = gets.chomp
+  if filter == ""
+    string = 0
+  else
+  filter.upcase!
+  string = 1
+  end
+
+  if string == 0
+    students.each_with_index do |student, index|
+      indexplusone = index+1  
+      puts "#{indexplusone}  #{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  elsif string == 1
+  students.each_with_index do |student, index|
+      indexplusone = index+1
+      slice = student[:name]
+      filter_slice = slice.slice(0)
+        if filter_slice == filter 
+          puts "#{indexplusone}  #{student[:name]} (#{student[:cohort]} cohort)"
+        end
+    end
   end
 end
 
