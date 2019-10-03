@@ -45,7 +45,7 @@ def print(students)
     i = 0
     while i < students.length
       indexplusone = i+1  
-      puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]} (#{students[i][:cohort]} cohort)"
+      puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]} (#{students[i][:cohort]} cohort)".center(60)
       i += 1
     end
   elsif length  == 1
@@ -55,7 +55,7 @@ def print(students)
       slice = students[i][:name]
       filter_slice = slice.delete(" ")
         if filter_slice.length <= filter 
-          puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]}  (#{students[i][:cohort]} cohort)"
+          puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]}  (#{students[i][:cohort]} cohort)".center(60)
           i += 1
         end
     end
