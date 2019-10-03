@@ -1,18 +1,26 @@
 #  Let's put all students into a hash
 
 def input_students
-  puts "Please enter the names of the students"
+  puts "Please enter the details of the students"
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
   # get the first name
+  puts "Please enter name of student."
   name = gets.chomp
+  puts "Please enter country of birth"
+  country_of_birth = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    students << {name: name, cohort: :november}
+    students << {name: name, country: country_of_birth, cohort: :november}
     puts "Now we have #{students.count} students"
     # get another name from the user
+    puts "Please enter name of student."
     name = gets.chomp
+    if !name.empty? 
+      puts "Please enter country of birth"
+    end
+    country_of_birth = gets.chomp
   end
   # return the array of students
   students
@@ -37,7 +45,7 @@ def print(students)
     i = 0
     while i < students.length
       indexplusone = i+1  
-      puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+      puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]} (#{students[i][:cohort]} cohort)"
       i += 1
     end
   elsif length  == 1
@@ -47,7 +55,7 @@ def print(students)
       slice = students[i][:name]
       filter_slice = slice.delete(" ")
         if filter_slice.length <= filter 
-          puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+          puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]}  (#{students[i][:cohort]} cohort)"
           i += 1
         end
     end
