@@ -24,7 +24,7 @@ puts "------------"
 end
 
 def print(students)
-  puts "If you want to filter by length of name, enter the number of characters. Otherwise, just enter 0."
+  puts "If you want to filter by length of name, enter the maximum number of characters. Otherwise, just enter 0."
   filter = gets.chomp
   if filter == "0"
     length  = 0
@@ -34,17 +34,21 @@ def print(students)
   end
 
   if length  == 0
-    students.each_with_index do |student, index|
-      indexplusone = index+1  
-      puts "#{indexplusone}  #{student[:name]} (#{student[:cohort]} cohort)"
+    i = 0
+    while i < students.length
+      indexplusone = i+1  
+      puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+      i += 1
     end
   elsif length  == 1
-  students.each_with_index do |student, index|
-      indexplusone = index+1
-      slice = student[:name]
+    i = 0
+    while i < students.length 
+      indexplusone = i+1
+      slice = students[i][:name]
       filter_slice = slice.delete(" ")
         if filter_slice.length <= filter 
-          puts "#{indexplusone}  #{student[:name]} (#{student[:cohort]} cohort)"
+          puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+          i += 1
         end
     end
   end
