@@ -32,40 +32,35 @@ def input_students
 end
 
 def print_header
-puts "The students of my cohort at Makers Academy"
+puts "The students by cohort at Makers Academy"
 puts "------------"
 end
 
 def print(students)
-  puts "If you want to filter by length of name, enter the maximum number of characters. Otherwise, just enter 0."
-  filter = gets.chomp
-  if filter == "0"
-    length  = 0
-  else
-  filter = filter.to_i
-  length  = 1
-  end
 
-  if length  == 0
-    i = 0
-    while i < students.length
-      indexplusone = i+1  
-      puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)".center(60)
-      i += 1
+    cohort_list = []
+    
+    students.each do | x |
+    cohortx = "#{x[:cohort]}"
+    cohort_list.push(cohortx)
     end
-  elsif length  == 1
-    i = 0
-    while i < students.length 
-      indexplusone = i+1
-      slice = students[i][:name]
-      filter_slice = slice.delete(" ")
-        if filter_slice.length <= filter 
-          puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)".center(60)
-          i += 1
+
+    cohort_list.uniq!
+
+      cohort_list.each do | x |
+
+      puts "Students in #{x} cohort"
+
+      students.each_with_index do | y, index |
+        check = "#{y[:cohort]}"
+        if check == x 
+          indexplusone = index + 1
+          puts "#{indexplusone} #{y[:name]}"
         end
+      end
     end
-  end
 end
+
 
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
