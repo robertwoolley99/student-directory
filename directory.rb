@@ -3,24 +3,29 @@
 def input_students
   puts "Please enter the details of the students"
   puts "To finish, just hit return twice"
+  puts "Enter the default month for the cohort"
+  default_cohort = gets.chomp
   # create an empty array
   students = []
   # get the first name
   puts "Please enter name of student."
   name = gets.chomp
-  puts "Please enter country of birth"
-  country_of_birth = gets.chomp
+  puts "Please enter the month of the cohort.  If you enter a blank, then we will use the default value of #{default_cohort}"
+  cohort = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    students << {name: name, country: country_of_birth, cohort: :november}
+      if cohort.empty?
+      cohort = default_cohort
+    end
+    students << {name: name, cohort: cohort}
     puts "Now we have #{students.count} students"
     # get another name from the user
     puts "Please enter name of student."
     name = gets.chomp
     if !name.empty? 
-      puts "Please enter country of birth"
+      puts "Please enter the month of the cohort.  If you enter a blank, then we will use the default value of #{default_cohort}"
     end
-    country_of_birth = gets.chomp
+    cohort = gets.chomp
   end
   # return the array of students
   students
@@ -45,7 +50,7 @@ def print(students)
     i = 0
     while i < students.length
       indexplusone = i+1  
-      puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]} (#{students[i][:cohort]} cohort)".center(60)
+      puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)".center(60)
       i += 1
     end
   elsif length  == 1
@@ -55,7 +60,7 @@ def print(students)
       slice = students[i][:name]
       filter_slice = slice.delete(" ")
         if filter_slice.length <= filter 
-          puts "#{indexplusone}  #{students[i][:name]} from  #{students[i][:country]}  (#{students[i][:cohort]} cohort)".center(60)
+          puts "#{indexplusone}  #{students[i][:name]} (#{students[i][:cohort]} cohort)".center(60)
           i += 1
         end
     end
