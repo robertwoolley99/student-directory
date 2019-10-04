@@ -18,7 +18,11 @@ def input_students
       cohort = default_cohort
     end
     students << {name: name, cohort: cohort}
-    puts "Now we have #{students.count} students"
+    if students.count == 1 
+      puts "Now we have 1 student."
+    else
+      puts "Now we have #{students.count} students"
+    end
     # get another name from the user
     puts "Please enter name of student."
     name = gets.chomp
