@@ -34,6 +34,12 @@ end
 
 
 students = input_students
+
+# End program if students array is empty
+if students.count == 0
+  exit
+end
+
 print_header
 print(students)
 print_footer(students)
