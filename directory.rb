@@ -4,14 +4,15 @@ def input_students
   puts "Please enter the details of the students"
   puts "To finish, just hit return twice"
   puts "Enter the default month for the cohort"
-  default_cohort = gets.chomp
+  default_cohort = gets.slice(0..-2)
+  puts "Default cohort is #{default_cohort}"
   # create an empty array
   students = []
   # get the first name
   puts "Please enter name of student."
-  name = gets.chomp
+  name = gets.slice(0..-2)
   puts "Please enter the month of the cohort.  If you enter a blank, then we will use the default value of #{default_cohort}"
-  cohort = gets.chomp
+  cohort = gets.slice(0..-2)
   # while the name is not empty, repeat this code
   while !name.empty? do
       if cohort.empty?
@@ -21,17 +22,16 @@ def input_students
     if students.count == 1 
       puts "Now we have 1 student."
     else
-      puts "Now we have #{students.count} students"
+      puts "Now we have #{students.count} students."
     end
     # get another name from the user
     puts "Please enter name of student."
-    name = gets.chomp
+    name = gets.slice(0..-2)
     if !name.empty? 
       puts "Please enter the month of the cohort.  If you enter a blank, then we will use the default value of #{default_cohort}"
     end
-    cohort = gets.chomp
+    cohort = gets.slice(0..-2)
   end
-  # return the array of students
   students
 end
 
