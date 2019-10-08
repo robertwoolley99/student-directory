@@ -9,6 +9,7 @@ def interactive_menu
     puts "1. Input the students"
     puts "2. Show the students"
     puts "3. Save the list to students.csv"
+    puts "4. Load the list from students.csv"
     puts "9. Exit" # 9 because we'll be adding more items
 # 2. read the input and save it into a variable
     selection = gets.chomp
@@ -22,6 +23,8 @@ def interactive_menu
     print_footer
     when "3" # save student details to students.csv
     save_students
+    when "4" # load student details from students.csv
+    load_students
     when "9"
     exit # this will cause the program to terminate
     else
@@ -115,8 +118,15 @@ def save_students
   file.close
 end
 
-
-
+# route to load data from file
+def load_students
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+  name, cohort = line.chomp.split(',') 
+    @students << {name:  name, cohort: cohort.to_sym}
+  end
+  file.close
+end
 
 
 
