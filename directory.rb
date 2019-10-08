@@ -3,7 +3,6 @@
 
 def interactive_menu
   students = []
-  puts "hello"
   loop do
 # 1. print the menu and ask the user what to do
     puts "1. Input the students"
@@ -12,7 +11,7 @@ def interactive_menu
     puts "4. Load the list from students.csv"
     puts "9. Exit" # 9 because we'll be adding more items
 # 2. read the input and save it into a variable
-    selection = gets.chomp
+    selection = STDIN.gets.chomp
 # 3. do what the user has asked
     case selection
     when "1"
@@ -119,8 +118,8 @@ def save_students
 end
 
 # route to load data from file
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',') 
     @students << {name:  name, cohort: cohort.to_sym}
@@ -128,13 +127,20 @@ def load_students
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first # first argument from the command line
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+    puts "Loaded #{@students.count} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
+  end
+end
 
 
 # nothing happens until we call the methods
+try_load_students
 interactive_menu
-
-#students = input_students
-#print_header
-#print(students)
-#print_footer(students)
 
