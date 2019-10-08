@@ -41,13 +41,13 @@ def input_students
   puts "Please enter the details of the students"
   puts "To finish, just hit return twice"
   puts "Enter the default month for the cohort"
-  default_cohort = gets.slice(0..-2)
+  default_cohort = STDIN.gets.slice(0..-2)
   puts "Default cohort is #{default_cohort}"
   # get the first name
   puts "Please enter name of student."
-  name = gets.slice(0..-2)
+  name = STDIN.gets.slice(0..-2)
   puts "Please enter the month of the cohort.  If you enter a blank, then we will use the default value of #{default_cohort}"
-  cohort = gets.slice(0..-2)
+  cohort = STDIN.gets.slice(0..-2)
   # while the name is not empty, repeat this code
   while !name.empty? do
       if cohort.empty?
@@ -61,11 +61,11 @@ def input_students
     end
     # get another name from the user
     puts "Please enter name of student."
-    name = gets.slice(0..-2)
+    name = STDIN.gets.slice(0..-2)
     if !name.empty? 
       puts "Please enter the month of the cohort.  If you enter a blank, then we will use the default value of #{default_cohort}"
     end
-    cohort = gets.slice(0..-2)
+    cohort = STDIN.gets.slice(0..-2)
   end
 end
 
