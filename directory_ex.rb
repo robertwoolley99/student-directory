@@ -1,3 +1,5 @@
+require 'csv'
+
 @students = [] # an empty array accessible to all methods
 
 @filename = "" # global variable for filename
@@ -76,16 +78,18 @@ def save_students
   puts "Enter the filename to save to. If you enter nothing, then the default of students.csv will be used."
   @filename = STDIN.gets.chomp
   if @filename.empty?
-  @filename = "students.csv"
+    @filename = "students.csv"
   end
   # open the file for writing
   File.open(@filename, "w") do |file|
   # iterate over the array of students
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-  end
+    @students.each do |student|
+      name = student[:name], 
+      cohort = student[:cohort]
+      CSV.open(file, "wb") do |csv|
+        csv << [name, cohort]
+      end
+    end
   end 
 end
 
@@ -100,10 +104,11 @@ def load_students(filename)
     end
   end
   File.open(filename, "r") do |file|  
-  file.readlines.each do |line| 
-  name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
-  end
+    CSV.foreach(file) do |line|
+      name = line[0]
+      cohort = line[1]
+      @students << {name: name, cohort: cohort.to_sym}
+    end
   end
   puts "File loaded."
 end
